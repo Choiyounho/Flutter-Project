@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
       home: Scaffold(
-          body: TestWidget()
-      )
-  ));
+          appBar: AppBar(
+              actions: [
+                IconButton(icon: const Icon(Icons.home), onPressed: () {
+
+                },)
+              ],
+              centerTitle: false,
+              title: const Text('This is App bar')),
+          body: const TestWidget(),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.bug_report),
+        onPressed: () {
+
+        },
+      ),)));
 }
 
 class TestWidget extends StatelessWidget {
@@ -16,8 +28,8 @@ class TestWidget extends StatelessWidget {
     return const SafeArea(
       child: Center(
         child: Text(
-          'Hello, Flutter',
-          style: TextStyle(color: Colors.black, fontSize: 30),
+          'Hello, Flutter!!',
+          style: TextStyle(color: Colors.black, fontSize: 50),
         ),
       ),
     );
