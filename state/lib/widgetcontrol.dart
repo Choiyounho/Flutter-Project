@@ -67,11 +67,7 @@ class ScrollBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-        child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.end,
+    return Column(
       children: [
         Container(
           color: Colors.blueGrey,
@@ -140,6 +136,6 @@ class ScrollBody extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 8),
         ),
       ],
-    ));
+    );
   }
 }
