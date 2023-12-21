@@ -17,22 +17,22 @@ class Body extends StatelessWidget {
       children: [
         Expanded(
             child: Row(children: [
-              Expanded(child: Container(color: Colors.red)),
-              Expanded(child: Container(color: Colors.greenAccent)),
-              Expanded(child: Container(color: Colors.amber)),
+          Expanded(child: Container(color: Colors.red)),
+          Expanded(child: Container(color: Colors.greenAccent)),
+          Expanded(child: Container(color: Colors.amber)),
         ])),
         Expanded(
             child: Row(children: [
-              Expanded(child: Container(color: Colors.grey)),
-              Expanded(child: Container(color: Colors.blueGrey)),
-              Expanded(child: Container(color: Colors.purple)),
-            ])),
+          Expanded(child: Container(color: Colors.grey)),
+          Expanded(child: Container(color: Colors.blueGrey)),
+          Expanded(child: Container(color: Colors.purple)),
+        ])),
         Expanded(
             child: Row(children: [
-              Expanded(child: Container(color: Colors.red)),
-              Expanded(child: Container(color: Colors.greenAccent)),
-              Expanded(child: Container(color: Colors.amber)),
-            ])),
+          Expanded(child: Container(color: Colors.red)),
+          Expanded(child: Container(color: Colors.greenAccent)),
+          Expanded(child: Container(color: Colors.amber)),
+        ])),
       ],
     );
   }
