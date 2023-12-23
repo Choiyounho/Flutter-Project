@@ -15,7 +15,13 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      children: [MyCheckBox(), MyRadioButton(), MySlider(), MySwitch()],
+      children: [
+        MyCheckBox(),
+        MyRadioButton(),
+        MySlider(),
+        MySwitch(),
+        MyPopupMenu()
+      ],
     );
   }
 }
@@ -135,15 +141,16 @@ class _MySliderState extends State<MySlider> {
       children: [
         Text('$value'),
         Slider(
-            value: value,
-            onChanged: (newValue) {
-              setState(() => value = newValue);
-            },
+          value: value,
+          onChanged: (newValue) {
+            setState(() => value = newValue);
+          },
           divisions: 100,
           max: 100,
           min: 0,
           activeColor: Colors.green,
-        label: '$value',),
+          label: '$value',
+        ),
       ],
     );
   }
@@ -158,12 +165,49 @@ class MySwitch extends StatefulWidget {
 
 class _MySwitchState extends State<MySwitch> {
   bool isCheck = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Switch(value: isCheck, onChanged: (isCheck) => setState(() => this.isCheck = isCheck)),
-        CupertinoSwitch(value: isCheck, onChanged: (isCheck) => setState(() => this.isCheck = isCheck)),
+        Switch(
+            value: isCheck,
+            onChanged: (isCheck) => setState(() => this.isCheck = isCheck)),
+        CupertinoSwitch(
+            value: isCheck,
+            onChanged: (isCheck) => setState(() => this.isCheck = isCheck)),
+      ],
+    );
+  }
+}
+
+class MyPopupMenu extends StatefulWidget {
+  const MyPopupMenu({super.key});
+
+  @override
+  State<MyPopupMenu> createState() => _MyPopupMenuState();
+}
+
+enum MyMenuValue {
+  test1,
+  test2,
+  test3,
+}
+
+class _MyPopupMenuState extends State<MyPopupMenu> {
+  MyMenuValue selectValue = MyMenuValue.test1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(selectValue.name),
+        PopupMenuButton(itemBuilder: (context) {
+          return MyMenuValue.values
+              .map((value) => PopupMenuItem(value: value, child: Text(value.name)))
+              .toList();
+        },
+        onSelected: (newValue) => setState(() => selectValue = newValue)),
       ],
     );
   }
