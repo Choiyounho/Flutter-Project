@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      children: [MyCheckBox()],
+      children: [MyCheckBox(), MyRadioButton()],
     );
   }
 }
@@ -60,3 +60,60 @@ class _MyCheckBoxState extends State<MyCheckBox> {
     });
   }
 }
+
+class MyRadioButton extends StatefulWidget {
+  const MyRadioButton({super.key});
+
+  @override
+  State<MyRadioButton> createState() => _MyRadioButtonState();
+}
+
+class _MyRadioButtonState extends State<MyRadioButton> {
+  MyRadioValue? selectValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          leading: Radio<MyRadioValue>(
+              value: MyRadioValue.test1,
+              groupValue: selectValue,
+              onChanged: (value) => setState(() => selectValue = value!)),
+          title: Text(MyRadioValue.test1.name),
+          onTap: () => setState(() {
+            if (selectValue != MyRadioValue.test1) {
+              selectValue = MyRadioValue.test1;
+            }
+          }),
+        ),
+        ListTile(
+          leading: Radio<MyRadioValue>(
+              value: MyRadioValue.test2,
+              groupValue: selectValue,
+              onChanged: (value) => setState(() => selectValue = value!)),
+          title: Text(MyRadioValue.test2.name),
+          onTap: () => setState(() {
+            if (selectValue != MyRadioValue.test2) {
+              selectValue = MyRadioValue.test2;
+            }
+          }),
+        ),
+        ListTile(
+          leading: Radio<MyRadioValue>(
+              value: MyRadioValue.test3,
+              groupValue: selectValue,
+              onChanged: (value) => setState(() => selectValue = value!)),
+          title: Text(MyRadioValue.test3.name),
+          onTap: () => setState(() {
+            if (selectValue != MyRadioValue.test3) {
+              selectValue = MyRadioValue.test3;
+            }
+          }),
+        ),
+      ],
+    );
+  }
+}
+
+enum MyRadioValue { test1, test2, test3 }
