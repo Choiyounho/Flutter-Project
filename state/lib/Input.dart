@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      children: [MyCheckBox(), MyRadioButton()],
+      children: [MyCheckBox(), MyRadioButton(), MySlider()],
     );
   }
 }
@@ -117,3 +117,33 @@ class _MyRadioButtonState extends State<MyRadioButton> {
 }
 
 enum MyRadioValue { test1, test2, test3 }
+
+class MySlider extends StatefulWidget {
+  const MySlider({super.key});
+
+  @override
+  State<MySlider> createState() => _MySliderState();
+}
+
+class _MySliderState extends State<MySlider> {
+  double value = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('$value'),
+        Slider(
+            value: value,
+            onChanged: (newValue) {
+              setState(() => value = newValue);
+            },
+          divisions: 100,
+          max: 100,
+          min: 0,
+          activeColor: Colors.green,
+        label: '$value',),
+      ],
+    );
+  }
+}
