@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      children: [MyCheckBox(), MyRadioButton(), MySlider()],
+      children: [MyCheckBox(), MyRadioButton(), MySlider(), MySwitch()],
     );
   }
 }
@@ -143,6 +144,26 @@ class _MySliderState extends State<MySlider> {
           min: 0,
           activeColor: Colors.green,
         label: '$value',),
+      ],
+    );
+  }
+}
+
+class MySwitch extends StatefulWidget {
+  const MySwitch({super.key});
+
+  @override
+  State<MySwitch> createState() => _MySwitchState();
+}
+
+class _MySwitchState extends State<MySwitch> {
+  bool isCheck = false;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Switch(value: isCheck, onChanged: (isCheck) => setState(() => this.isCheck = isCheck)),
+        CupertinoSwitch(value: isCheck, onChanged: (isCheck) => setState(() => this.isCheck = isCheck)),
       ],
     );
   }
