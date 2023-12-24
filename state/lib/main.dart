@@ -17,7 +17,9 @@ void main() {
         onPressed: () {
 
         },
-      ),)));
+      ),
+      )
+  ));
 }
 
 class TestWidget extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:state/screen/new_page.dart';
 
 void main() {
@@ -35,13 +36,14 @@ class _HomeWidgetState extends State<HomeWidget> {
             children: [
               TextButton(child: Text('Next Page'),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return NewPage();
-                    },
-                    ),
-                  );
+                context.pushNamed('new1');
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) {
+                  //     return NewPage();
+                  //   },
+                  //   ),
+                  // );
                 },
               ),
             ],
