@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: HomeWidget(),
+    home: HomeBottomWidget(),
   ));
 }
 
@@ -15,14 +15,14 @@ class Body extends StatelessWidget {
   }
 }
 
-class HomeWidget extends StatefulWidget {
-  const HomeWidget({super.key});
+class HomeBottomWidget extends StatefulWidget {
+  const HomeBottomWidget({super.key});
 
   @override
-  State<HomeWidget> createState() => _HomeWidgetState();
+  State<HomeBottomWidget> createState() => _HomeBottomWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _HomeBottomWidgetState extends State<HomeBottomWidget> {
   late int index;
 
   @override
