@@ -1,11 +1,18 @@
 import 'package:hoss/common/common.dart';
+import 'package:hoss/screen/main/tab/all/all_screen.dart';
+import 'package:hoss/screen/main/tab/benefit/benefit_screen.dart';
 import 'package:hoss/screen/main/tab/favorite/f_favorite.dart';
 import 'package:hoss/screen/main/tab/home/f_home.dart';
 import 'package:flutter/material.dart';
+import 'package:hoss/screen/main/tab/hosspay/hoss_pay_screen.dart';
+import 'package:hoss/screen/main/tab/stock/stock_screen.dart';
 
 enum TabItem {
   home(Icons.home, '홈', HomeFragment()),
-  favorite(Icons.star, '즐겨찾기', FavoriteFragment(isShowBackButton: false));
+  benefit(Icons.star, '혜택', BenefitScreen()),
+  hosspay(Icons.payment, '호스페이', HossPayScreen()),
+  stock(Icons.candlestick_chart, '주식', StockScreen()),
+  all(Icons.menu, '전체', AllScreen());
 
   final IconData activeIcon;
   final IconData inActiveIcon;
