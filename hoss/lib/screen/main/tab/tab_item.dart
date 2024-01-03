@@ -1,7 +1,6 @@
 import 'package:hoss/common/common.dart';
 import 'package:hoss/screen/main/tab/all/all_screen.dart';
 import 'package:hoss/screen/main/tab/benefit/benefit_screen.dart';
-import 'package:hoss/screen/main/tab/favorite/f_favorite.dart';
 import 'package:hoss/screen/main/tab/home/f_home.dart';
 import 'package:flutter/material.dart';
 import 'package:hoss/screen/main/tab/hosspay/hoss_pay_screen.dart';
