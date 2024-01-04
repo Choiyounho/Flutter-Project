@@ -11,6 +11,7 @@ class Arrow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Icon(
+      color: Colors.white,
       icon,
       size: size,
     );
