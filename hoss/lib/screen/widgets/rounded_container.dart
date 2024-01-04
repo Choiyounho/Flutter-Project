@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hoss/common/common.dart';
 
 class RoundedContainer extends StatelessWidget {
   final Widget child;
@@ -21,7 +22,7 @@ class RoundedContainer extends StatelessWidget {
       padding: padding,
       margin: margin,
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: backgroundColor ?? context.appColors.roundedLayoutBackground,
         borderRadius: BorderRadius.circular(radius),
       ),
       child: child,

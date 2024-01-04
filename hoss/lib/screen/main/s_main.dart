@@ -36,6 +36,8 @@ class MainScreenState extends State<MainScreen>
 
   static double get bottomNavigationBarBorderRadius => 30.0;
 
+  static const double bottomNavigatorHeight = 50;
+
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
     delay(() {
@@ -54,12 +56,10 @@ class MainScreenState extends State<MainScreen>
     return WillPopScope(
       onWillPop: _handleBackPressed,
       child: Scaffold(
-        extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
+        extendBody: extendBody,
         drawer: const MenuDrawer(),
-        body: Container(
-          color: context.appColors.seedColor.getMaterialColorValues[200],
-          padding: EdgeInsets.only(
-              bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
+        body: Padding(
+          padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
           child: SafeArea(
             bottom: !extendBody,
             child: pages,
@@ -74,17 +74,17 @@ class MainScreenState extends State<MainScreen>
       index: _currentIndex,
       children: tabs
           .mapIndexed((tab, index) => Offstage(
-                offstage: _currentTab != tab,
-                child: TabNavigator(
-                  navigatorKey: navigatorKeys[index],
-                  tabItem: tab,
-                ),
-              ))
+        offstage: _currentTab != tab,
+        child: TabNavigator(
+          navigatorKey: navigatorKeys[index],
+          tabItem: tab,
+        ),
+      ))
           .toList());
 
   Future<bool> _handleBackPressed() async {
     final isFirstRouteInCurrentTab =
-        (await _currentTabNavigationKey.currentState?.maybePop() == false);
+    (await _currentTabNavigationKey.currentState?.maybePop() == false);
     if (isFirstRouteInCurrentTab) {
       if (_currentTab != TabItem.home) {
         _changeTab(tabs.indexOf(TabItem.home));
@@ -125,10 +125,10 @@ class MainScreenState extends State<MainScreen>
     return tabs
         .mapIndexed(
           (tab, index) => tab.toNavigationBarItem(
-            context,
-            isActivated: _currentIndex == index,
-          ),
-        )
+        context,
+        isActivated: _currentIndex == index,
+      ),
+    )
         .toList();
   }
 
@@ -138,15 +138,13 @@ class MainScreenState extends State<MainScreen>
     });
   }
 
-  BottomNavigationBarItem bottomItem(bool activate, IconData iconData,
-      IconData inActivateIconData, String label) {
+  BottomNavigationBarItem bottomItem(
+      bool activate, IconData iconData, IconData inActivateIconData, String label) {
     return BottomNavigationBarItem(
         icon: Icon(
           key: ValueKey(label),
           activate ? iconData : inActivateIconData,
-          color: activate
-              ? context.appColors.iconButton
-              : context.appColors.iconButtonInactivate,
+          color: activate ? context.appColors.iconButton : context.appColors.iconButtonInactivate,
         ),
         label: label);
   }
