@@ -4,6 +4,7 @@ import 'package:hoss/common/common.dart';
 import 'package:hoss/common/dart/extension/datetime_extension.dart';
 import 'package:hoss/common/data/preference/prefs.dart';
 import 'package:hoss/screen/main/tab/stock/setting/w_switch_menu.dart';
+import 'package:hoss/screen/opensource/s_opensource.dart';
 import 'package:hoss/screen/widgets/big_button.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -46,7 +47,7 @@ class _SettingScreenState extends State<SettingScreen> {
             }),
           ),
           BigButton('오픈소스 화면', onTap: () async {
-
+            Nav.push(OpensourceScreen());
           })
         ],
       ),
