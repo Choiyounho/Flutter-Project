@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hoss/common/common.dart';
+import 'package:hoss/screen/main/tab/stock/setting/s_stting.dart';
 import 'package:hoss/screen/main/tab/stock/stock_search_screen.dart';
 import 'package:hoss/screen/main/tab/stock/tab/my_stock_screen.dart';
 import 'package:hoss/screen/main/tab/stock/tab/today_discovery_screen.dart';
@@ -40,7 +41,7 @@ class _StockScreenState extends State<StockScreen> with SingleTickerProviderStat
             ImageButton(
               imagePath: '$basePath/icon/stock_settings.png',
               onTap: () {
-                // Nav.push(const SettingScreen());
+                Nav.push(const SettingScreen());
               },
             ),
           ],

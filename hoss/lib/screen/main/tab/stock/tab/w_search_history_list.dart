@@ -5,14 +5,14 @@ import 'package:hoss/screen/main/tab/stock/tab/stock_search_data.dart';
 
 import '../../../../widgets/rounded_container.dart';
 
-class SearchSearchHistories extends StatefulWidget {
-  const SearchSearchHistories({Key? key}) : super(key: key);
+class SearchStockHistories extends StatefulWidget {
+  const SearchStockHistories({Key? key}) : super(key: key);
 
   @override
-  State<SearchSearchHistories> createState() => _SearchSearchHistoriesState();
+  State<SearchStockHistories> createState() => _SearchStockHistoriesState();
 }
 
-class _SearchSearchHistoriesState extends State<SearchSearchHistories> {
+class _SearchStockHistoriesState extends State<SearchStockHistories> {
   late final searchHistoryData = Get.find<StockSearchData>();
 
   get historyList => searchHistoryData.searchHistoryList;
@@ -20,6 +20,7 @@ class _SearchSearchHistoriesState extends State<SearchSearchHistories> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      width: double.infinity,
         height: 60,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -57,7 +58,7 @@ class SearchHistoryItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Center(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
