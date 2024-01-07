@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hoss/common/common.dart';
+import 'package:hoss/screen/main/tab/benefit/benefit.dart';
+import 'package:hoss/screen/main/tab/benefit/benefit_item.dart';
 import 'package:hoss/screen/main/tab/benefit/point_button.dart';
 
 class BenefitScreen extends StatefulWidget {
@@ -18,8 +20,9 @@ class _BenefitScreenState extends State<BenefitScreen> {
         children: [
           Height(30),
           "혜택".text.white.bold.size(18).make().pSymmetric(h: 20),
-          PointButton(point: 8000),
+          PointButton(point: 8000).pSymmetric(v: 16, h: 16),
           "혜택 더 받기".text.white.bold.size(16).make().pSymmetric(h: 20),
+          ...benefitList.map((e) => BenefitItem(benefit: e)).toList()
         ],
       ),
     );
