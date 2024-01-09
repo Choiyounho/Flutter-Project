@@ -1,17 +1,18 @@
 import 'package:hoss/common/common.dart';
-import 'package:hoss/screen/main/tab/all/all_screen.dart';
-import 'package:hoss/screen/main/tab/benefit/benefit_screen.dart';
-import 'package:hoss/screen/main/tab/home/home_screen.dart';
+import 'package:hoss/screen/main/tab/all/f_all.dart';
+import 'package:hoss/screen/main/tab/home/f_home.dart';
+import 'package:hoss/screen/main/tab/stock/f_stock.dart';
+import 'package:hoss/screen/main/tab/ttospay/f_ttospay.dart';
 import 'package:flutter/material.dart';
-import 'package:hoss/screen/main/tab/hosspay/hoss_pay_screen.dart';
-import 'package:hoss/screen/main/tab/stock/stock_screen.dart';
+
+import 'benefit/f_benefit.dart';
 
 enum TabItem {
-  home(Icons.home, '홈', HomeScreen()),
-  benefit(Icons.star, '혜택', BenefitScreen()),
-  hosspay(Icons.payment, '토스페이', HossPayScreen()),
-  stock(Icons.candlestick_chart, '주식', StockScreen()),
-  all(Icons.menu, '전체', AllScreen());
+  home(Icons.home, '홈', HomeFragment()),
+  benefit(Icons.star, '혜택', BenefitFragment()),
+  ttosspay(Icons.payment, '토스페이', TtospayFragment()),
+  stock(Icons.candlestick_chart, '주식', StockFragment()),
+  all(Icons.menu, '전체', AllFragment());
 
   final IconData activeIcon;
   final IconData inActiveIcon;
@@ -27,7 +28,7 @@ enum TabItem {
           key: ValueKey(tabName),
           isActivated ? activeIcon : inActiveIcon,
           color:
-          isActivated ? context.appColors.iconButton : context.appColors.iconButtonInactivate,
+              isActivated ? context.appColors.iconButton : context.appColors.iconButtonInactivate,
         ),
         label: tabName);
   }

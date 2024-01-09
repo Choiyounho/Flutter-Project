@@ -4,15 +4,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OsSwitch extends StatelessWidget {
-  final bool isOn;
-  final ValueChanged<bool> onTap;
-  const OsSwitch({super.key, required this.isOn, required this.onTap});
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  const OsSwitch({super.key, required this.value, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isLinux
-      ? CupertinoSwitch(value: isOn, onChanged: onTap)
-    : Switch(value: isOn, onChanged: onTap)
-    ;
+    return Platform.isIOS
+        ? CupertinoSwitch(
+            value: value,
+            onChanged: onChanged,
+          )
+        : Switch(
+            value: value,
+            onChanged: onChanged,
+          );
   }
 }

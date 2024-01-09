@@ -1,9 +1,8 @@
 import 'package:after_layout/after_layout.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:hoss/common/cli_common.dart';
 import 'package:hoss/screen/main/tab/tab_item.dart';
 import 'package:hoss/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import '../../common/common.dart';
 import 'w_menu_drawer.dart';
@@ -21,7 +20,7 @@ class MainScreenState extends State<MainScreen>
   final tabs = [
     TabItem.home,
     TabItem.benefit,
-    TabItem.hosspay,
+    TabItem.ttosspay,
     TabItem.stock,
     TabItem.all,
   ];
@@ -29,9 +28,9 @@ class MainScreenState extends State<MainScreen>
 
   int get _currentIndex => tabs.indexOf(_currentTab);
 
-  GlobalKey<NavigatorState> get _currentTabNavigationKey =>
-      navigatorKeys[_currentIndex];
+  GlobalKey<NavigatorState> get _currentTabNavigationKey => navigatorKeys[_currentIndex];
 
+  ///bottomNavigationBar 아래 영역 까지 그림
   bool get extendBody => true;
 
   static double get bottomNavigationBarBorderRadius => 30.0;
@@ -39,10 +38,8 @@ class MainScreenState extends State<MainScreen>
   static const double bottomNavigatorHeight = 50;
 
   @override
-  FutureOr<void> afterFirstLayout(BuildContext context) {
-    delay(() {
-      FlutterNativeSplash.remove();
-    }, 1500.ms);
+  FutureOr<void> afterFirstLayout(BuildContext context) async {
+    FlutterNativeSplash.remove();
   }
 
   @override
@@ -74,17 +71,17 @@ class MainScreenState extends State<MainScreen>
       index: _currentIndex,
       children: tabs
           .mapIndexed((tab, index) => Offstage(
-        offstage: _currentTab != tab,
-        child: TabNavigator(
-          navigatorKey: navigatorKeys[index],
-          tabItem: tab,
-        ),
-      ))
+                offstage: _currentTab != tab,
+                child: TabNavigator(
+                  navigatorKey: navigatorKeys[index],
+                  tabItem: tab,
+                ),
+              ))
           .toList());
 
   Future<bool> _handleBackPressed() async {
     final isFirstRouteInCurrentTab =
-    (await _currentTabNavigationKey.currentState?.maybePop() == false);
+        (await _currentTabNavigationKey.currentState?.maybePop() == false);
     if (isFirstRouteInCurrentTab) {
       if (_currentTab != TabItem.home) {
         _changeTab(tabs.indexOf(TabItem.home));
@@ -125,10 +122,10 @@ class MainScreenState extends State<MainScreen>
     return tabs
         .mapIndexed(
           (tab, index) => tab.toNavigationBarItem(
-        context,
-        isActivated: _currentIndex == index,
-      ),
-    )
+            context,
+            isActivated: _currentIndex == index,
+          ),
+        )
         .toList();
   }
 
