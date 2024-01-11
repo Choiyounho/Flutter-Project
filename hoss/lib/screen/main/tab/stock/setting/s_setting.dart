@@ -17,8 +17,11 @@ class SettingScreen extends StatefulWidget {
   State<SettingScreen> createState() => _SettingScreenState();
 }
 
-class _SettingScreenState extends State<SettingScreen> {
+class _SettingScreenState extends State<SettingScreen>
+    with SingleTickerProviderStateMixin {
   final ScrollController scrollController = ScrollController();
+  late final AnimationController animationController =
+      AnimationController(vsync: this, duration: 2000.ms);
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +33,19 @@ class _SettingScreenState extends State<SettingScreen> {
             padding: const EdgeInsets.only(top: 150),
             children: [
               Obx(
-                    () => SwitchMenu('푸시 설정', Prefs.isPushOnRx.get(), onChanged: (isOn) {
+                () => SwitchMenu('푸시 설정', Prefs.isPushOnRx.get(),
+                    onChanged: (isOn) {
                   Prefs.isPushOnRx.set(isOn);
                 }),
               ),
               Obx(() => Slider(
                   value: Prefs.sliderPosition.get(),
                   onChanged: (value) {
+                    animationController.animateTo(value, duration: 0.ms);
                     Prefs.sliderPosition.set(value);
                   })),
               Obx(
-                    () => BigButton(
+                () => BigButton(
                   '날짜 ${Prefs.birthday.get() == null ? "" : Prefs.birthday.get()?.formattedDate}',
                   onTap: () async {
                     final date = await showDatePicker(
@@ -55,7 +60,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
               Obx(
-                    () => BigButton(
+                () => BigButton(
                   '저장된 숫자 ${Prefs.number.get()}',
                   onTap: () async {
                     final number = await NumberDialog().show();
@@ -72,6 +77,48 @@ class _SettingScreenState extends State<SettingScreen> {
                 },
               ),
               BigButton(
+                '애니메이션 forword',
+                onTap: () async {
+                  animationController.forward();
+                },
+              ),
+              BigButton(
+                '애니메이션 reverse',
+                onTap: () async {
+                  animationController.reverse();
+                },
+              ),
+              BigButton(
+                '애니메이션 repeat',
+                onTap: () async {
+                  animationController.repeat();
+                },
+              ),
+              BigButton(
+                '애니메이션 reset',
+                onTap: () async {
+                  animationController.reset();
+                },
+              ),
+              BigButton(
+                '오픈소스 화면',
+                onTap: () async {
+                  Nav.push(const OpensourceScreen());
+                },
+              ),
+              BigButton(
+                '오픈소스 화면',
+                onTap: () async {
+                  Nav.push(const OpensourceScreen());
+                },
+              ),
+              BigButton(
+                '오픈소스 화면',
+                onTap: () async {
+                  Nav.push(const OpensourceScreen());
+                },
+              ),
+              BigButton(
                 '오픈소스 화면',
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
@@ -100,72 +147,44 @@ class _SettingScreenState extends State<SettingScreen> {
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
                 },
-              ),BigButton(
+              ),
+              BigButton(
                 '오픈소스 화면',
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
                 },
-              ),BigButton(
+              ),
+              BigButton(
                 '오픈소스 화면',
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
                 },
-              ),BigButton(
+              ),
+              BigButton(
                 '오픈소스 화면',
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
                 },
-              ),BigButton(
+              ),
+              BigButton(
                 '오픈소스 화면',
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
                 },
-              ),BigButton(
+              ),
+              BigButton(
                 '오픈소스 화면',
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
                 },
-              ),BigButton(
+              ),
+              BigButton(
                 '오픈소스 화면',
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
                 },
-              ),BigButton(
-                '오픈소스 화면',
-                onTap: () async {
-                  Nav.push(const OpensourceScreen());
-                },
-              ),BigButton(
-                '오픈소스 화면',
-                onTap: () async {
-                  Nav.push(const OpensourceScreen());
-                },
-              ),BigButton(
-                '오픈소스 화면',
-                onTap: () async {
-                  Nav.push(const OpensourceScreen());
-                },
-              ),BigButton(
-                '오픈소스 화면',
-                onTap: () async {
-                  Nav.push(const OpensourceScreen());
-                },
-              ),BigButton(
-                '오픈소스 화면',
-                onTap: () async {
-                  Nav.push(const OpensourceScreen());
-                },
-              ),BigButton(
-                '오픈소스 화면',
-                onTap: () async {
-                  Nav.push(const OpensourceScreen());
-                },
-              ),BigButton(
-                '오픈소스 화면',
-                onTap: () async {
-                  Nav.push(const OpensourceScreen());
-                },
-              ),BigButton(
+              ),
+              BigButton(
                 '오픈소스 화면',
                 onTap: () async {
                   Nav.push(const OpensourceScreen());
@@ -203,7 +222,11 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
             ],
           ),
-          AnimatedAppBar('설정', controller: scrollController)
+          AnimatedAppBar(
+            '설정',
+            scrollController: scrollController,
+            animationController: animationController,
+          )
         ],
       ),
     );
