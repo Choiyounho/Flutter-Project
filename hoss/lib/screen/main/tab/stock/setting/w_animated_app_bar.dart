@@ -22,7 +22,6 @@ class _AnimatedAppBarState extends State<AnimatedAppBar> {
 
   @override
   void initState() {
-
     super.initState();
     widget.controller.addListener(() {
       setState(() {
@@ -62,14 +61,31 @@ class _AnimatedAppBarState extends State<AnimatedAppBar> {
             AnimatedContainer(
                 duration: duration,
                 padding: EdgeInsets.only(
-                    left: getValue(20, 50),
-                    top: getValue(50, 15)),
+                    left: getValue(20, 50), top: getValue(50, 15)),
                 child: AnimatedDefaultTextStyle(
                     style: TextStyle(
                         fontSize: getValue(30, 18),
                         fontWeight: FontWeight.bold),
                     duration: duration,
-                    child: widget.title.text.make()))
+                    child: widget.title.text.make())),
+            Positioned.fill(
+                child: Align(
+              alignment: Alignment.topRight,
+              child: TweenAnimationBuilder<Color?>(
+                duration: 1000.ms,
+                tween: ColorTween(
+                    begin: Colors.green,
+                    end: isTriggered ? Colors.green : Colors.orange),
+                builder: (context, value, child) => ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    value ?? Colors.green,
+                    BlendMode.modulate,
+                  ),
+                  child: child,
+                ),
+                child: Image.asset('$basePath/icon/map_point.png', height: 60),
+              ),
+            ))
           ],
         ),
       ),
