@@ -1,7 +1,9 @@
+import 'package:animations/animations.dart';
 import 'package:hoss/common/common.dart';
 import 'package:hoss/common/dart/extension/datetime_extension.dart';
 import 'package:hoss/screen/main/tab/stock/search/dummy_popular_stocks.dart';
 import 'package:flutter/material.dart';
+import 'package:hoss/screen/main/tab/stock/search/s_stock_detail.dart';
 
 class PopularSearchList extends StatefulWidget {
   const PopularSearchList({Key? key}) : super(key: key);
@@ -24,18 +26,27 @@ class _PopularSearchListState extends State<PopularSearchList> {
         ).pSymmetric(h: 20, v: 15),
         height20,
         ...popularStocks
-            .mapIndexed((e, index) => Row(
-                  children: [
-                    (index + 1).text.bold.white.size(16).make(),
-                    width20,
-                    e.name.text.bold.white.size(16).make(),
-                    emptyExpanded,
-                    e.todayPercentageString.text
-                        .color(e.getTodayPercentageColor(context))
-                        .size(16)
-                        .make(),
-                  ],
-                ).pSymmetric(h: 20, v: 20))
+            .mapIndexed((e, index) => OpenContainer<bool>(
+                  openColor: context.backgroundColor,
+                  closedColor: context.backgroundColor,
+                  closedBuilder: (BuildContext context, VoidCallback action) {
+                    return Row(
+                      children: [
+                        (index + 1).text.bold.white.size(16).make(),
+                        width20,
+                        e.name.text.bold.white.size(16).make(),
+                        emptyExpanded,
+                        e.todayPercentageString.text
+                            .color(e.getTodayPercentageColor(context))
+                            .size(16)
+                            .make(),
+                      ],
+                    ).pSymmetric(h: 20, v: 20);
+                  },
+                  openBuilder: (BuildContext context, VoidCallback _) {
+                    return StockDetail(stockName: e.name);
+                  },
+                ))
             .toList()
       ],
     );
